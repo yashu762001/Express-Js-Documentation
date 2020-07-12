@@ -1,0 +1,131 @@
+This is the heart of Express Js.
+Many people get confused with this term.
+
+But let's think as a beginner that what it could possibly mean ??
+
+Ans: May be this is something which happens in between.
+
+Yaa!! Exactly True. This is what it could mean after listening to the word.
+If i was to say in Hindi (Yeh Iska Shaabdik Meaning Hai).
+
+But Now Let's Go to it's actual definition :
+
+Middleware are the set of functions which are executed step by step.
+
+(Kuch Samajh Nahi Aaya!!!(Nothing Understood))
+
+No problem!!!
+
+Let's head into the definition of Express Js!!(We will discuss above after this sorry for inconvenience)
+
+Express Js is a Routing as well as a middleware backend framework. This application is based upon a lot of middleware functions.
+
+So basically I am not discussing the code for how to set up a express Js server.
+I hope you would be knowing that. If Not first go to official documentation and just read that.
+
+So it is written like this :
+	app.get('/', (req, res)=> {
+	
+	res.send("Yash Mathur is greatest person in the world.")
+}) 
+
+Sorry For being self obsessed!!! But Yaa actually a request object is received by the server from the browser and this
+defined function is executed and response object is sent to browser carrying message to display what is written above.
+This is a cycle in which request goes and response comes. Until Response is not received for the sent request the cycle is said to be incomplete.
+Also in computer terms we refer to this cycle as Request-Response Cycle.
+
+Again Will Confuse you a bit but plzz handle!!!
+(Actually the function defined above is also a middleware.)
+
+(Middleware is nothing but a function which has access to the request as well as the response objects.)
+
+As the request goes to the server the middleware is executed.
+
+So Now i will take the example which will clear the damn fucking thing!!!!
+
+Just Go to your IDE(Use Visual Studio Code : Favourable.)
+
+There make two files one named app.js and another index.js.
+
+In app.js write below code  :
+
+	const express = require('express'); 
+	const app = express();
+	const port = 80; 
+	const super = require('./index.js'); 
+	app.use(super); 
+	app.get('/', (req, res)=> {
+	res.send("Yash Mathur is the greatest person in the world.")
+})
+
+	app.listen(port, ()=> {
+	console.log("Your server is running at " +port); 
+})
+
+
+Go to index.js and write below code  :
+	const super = function(req, res) {
+	console.log("He Guys Welcome To The Super Chat"); 
+}
+
+	module.exports = super ; 
+
+Now go to terminal and write nodemon app.js.
+Your server will get started and when you will go to the link you will see blank page
+nothing written over it and when you see the terminal you will see : 
+	He Guys Welcome To the Super Chat
+
+Why??? We have send something as defined above in app.js.
+
+Actually this is what middleware is all about.
+
+The function we wrote in index.js is actually a middleware which is executed because we have used it in app.js by taking help of command app.use().
+
+Whenever we open the url('/') the request object is fired and thereby middleware is executed
+since the one defined with app.use() is global and executed first. So it will be executed and now it will ask what to do??
+
+Since if this middleware would have written something like res.send("") then the cycle would have been stopped here only since response is returned.
+
+But since no response is returned after running this middleware, cycle not finished.
+
+After execution of first middleware it asks now what???
+ans: Nothing. Since it does not know what to do. We know that it should fire the next middleware in which we have defined res.send().
+
+Par isko Kaise Samjhaye(But how to explain it)
+
+Answer just write next() in index.js. This command will say that since cycle is not completed here so just execute another middleware.
+
+If that middleware will also not end the cycle then, next middleware whichever defined will be called.
+
+This is how the express JS works. Just calling of lots and lots of middleware functions.
+
+Actually the middleware you define in the app.get('/') is actually not the first middleware.
+
+Internally lots of middleware have been executed but since they didn't end the cycle so this middleware which we defined got executed and ended the cycle at last.
+
+This is what middleware is actually: Just a collection of lots of functions executing one by one.
+
+(But remember if one is not ending the cycle then to let other middleware get executed don't forget to add next() into the previous middleware.)
+
+So finally updated code of index.js will be : 
+
+	const super = function(req, res, next) {
+	console.log("Hi Guys Welcome To The Super Chat."); 
+	next(); 
+}
+
+	module.exports = super; 
+
+There are various types of MiddleWare : 
+
+1.) Application Based MiddleWare : What We discussed Above comes in this category.
+
+2.) Router Based MiddleWare : Sometimes we make a special routes.js file just to make
+all routes here and then import it in app.js and directly use it there.
+In this case also same functionality will persist.
+
+3.) Error Bases MiddleWare : These MiddleWare Fucntions are intelligent to catch anykind of error if there.
+So everything same as above but along with it one more additional parameter in the function(err, req, res, next).
+
+So This is all about MiddleWare. Now if you will go to official documentation i hope, you
+will understand everything and that too more easily.
