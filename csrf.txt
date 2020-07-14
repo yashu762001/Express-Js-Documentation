@@ -1,0 +1,69 @@
+				CSRF : 
+
+What is CSRF ??
+
+It actually stands for Cross Site Request Forgery.
+
+Ok But this is the full form explain what it actually means ???
+
+For explaining it i will take two examples. One example is based upon a online banking system and other one will be used to conclude  the previous one and would
+be based upon a birthday party.
+
+Example 1 : 
+
+Let's assume that you are smart and know how to do online banking. For a while let's say, you have Rs. 10lacs in your bank account. For performing any
+transaction online or checking your bank balance you will first have to login onto your bank account using the login credentials.
+
+So Let me move a bit deep into the login system.
+
+Whenever a person tries to login his session is created and that session  has a fixed expiry date. This means that if you close your account without logging out
+then you will be kept login for a particular time period. This helps by preventing from logging in every time we visit the website.
+
+But how does the banking server recognises that its me who is trying to access the system ??
+
+Actually when you log in for the first time your session is created and a unique session id corresponding to that session is created and is stored in a cookie which
+is thereby stored on your browser. You can search for this by right clicking on the page and click on inspect element and then click on console. There if you
+type document.cookie, it will give you the cookie which actually stores the session information. As the session expires this cookie also expires and this 
+information is lost.
+
+
+Now hacker takes the advantage of this particular thing.
+
+But how???
+
+Let us think of the era when banks used to take GET requests.
+
+So hackers used to create a link which consisted of entire information which is needed to complete the transaction from victim's bank account.
+
+As the victim clicks on the link the cookie also goes to the server and server recognises that the user is genuine and is authenticated and the transaction is
+confirmed. 
+
+So who is wrong ??
+
+Obviously the victim was foolish. Thus it is said to not click on any unknown link. Because they are gonna steal the entire information fom your computer.
+
+Now let's conclude above with the concluding example : 
+
+Let's imagine that Mr. Yash Mathur organised a birthday party and everyone whosoever is invited is sent a invitation letter and before entering he/she has
+to show that invitation letter to the security guard standing outside.
+
+Now my friend has invitation letter but i don't have. But i want to go to the party. What i will do ??
+
+I will ask my friend that you show the guard the invitation letter and i will hide behind you so that with 1 card two of us will go inside.
+
+This is Cross Site Request Forgery. That is to hide behind someone and performing actions.
+
+
+In first example the hacker didn't actually logged in to the bank account, but he made other person to login and hide behind him and also reached his bank account
+and just fucked the person
+
+Can this be prevented???
+
+If we consider the django framework, then here for every such request a csrf token is generated so if the hacker wants to access the victim's bank account then
+he/she has to provide the csrf token in the link. If the csrf would be right then only he will be allowed to enter the person's bank account.
+
+It's not easy to guess the csrf token. It is very long string with completely random arrangement of characters, almost similar to the hash of the password. But
+for generating them the hashing algorithms are not used. Actually teh chaining functions are used for this purpose. But the only disadvantage of this is that
+csrf token is generated everytime user sends the request. So it actually slows the process. Yet!!! Provides incredible level of security.
+
+...........................................................xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...........................................................................
