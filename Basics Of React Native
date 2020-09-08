@@ -1,0 +1,381 @@
+import { StatusBar, } from 'expo-status-bar';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, TouchableOpacity} from 'react-native';
+
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+     
+//         <Text> Kaise Ho</Text>
+//         <Text> Mujhse Pyaar Karte Ho Yaa Nahi</Text>
+//         <Text> Mujhpar Jaan Nyochavar Kar Sakte Ho Yaa Nahi yahan</Text>
+//       <StatusBar style="auto" />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: 'lightgrey',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+    
+//   },
+// });
+
+
+// FlexBox Concept With All Functionalities Discussed : 
+// const ConceptOfFlexBox = ()=> {
+//   return (
+//     <SafeAreaView style = { {
+//       flex:1,
+//       flexDirection : 'column',
+//       justifyContent : "space-evenly",
+//       alignItems : 'stretch',
+//       backgroundColor : 'powderblue',
+//     }
+
+//     }>
+//       <SafeAreaView style = {
+//         {
+//           height : 50,
+//           backgroundColor : 'rgb(125,111,245)'
+//         }
+//       }>
+//         <Text style = {
+//           {
+//             color : 'black',
+//             textAlign: 'center',
+//           }
+//         }> I love to do coding</Text>
+//     </SafeAreaView>
+
+//     <SafeAreaView style = {
+//         {
+//           height : 50,
+//           backgroundColor : 'rgb(12,231,134)'
+//         }
+//       }>
+//         <Text style = {
+//           {
+//             color : 'black',
+//             textAlign : 'center',
+//           }
+//         }> I am a Proficient Java Coder</Text>
+//     </SafeAreaView>
+
+//     <SafeAreaView style = {
+//         {
+//           height : 50,
+//           backgroundColor : 'rgb(1,45,190)',
+//         }
+//       }>
+//         <Text style = {
+//           {
+//             color : 'black',
+//             textAlign : 'center',
+//           }
+//         }> Currently I am Sophomore At IIT Madras</Text>
+//     </SafeAreaView>
+
+//     <SafeAreaView style = {
+//       {
+//         height : 50,
+//         backgroundColor : 'rgb(125,111,245)'
+//       }
+//     }>
+//       <Text style = {
+//           {
+//             color : 'black',
+//             textAlign : 'center',
+//           }
+//         }> I want to open a new company named Tagger</Text>
+//   </SafeAreaView>
+
+//   <SafeAreaView style = {
+//       {
+//         height : 50,
+//         backgroundColor : 'rgb(12,231,134)'
+//       }
+//     }>
+//       <Text style = {
+//           {
+//             color : 'black',
+//             textAlign : 'center',
+//           }
+//         }> I am decent at Competittive Programming.</Text>
+//   </SafeAreaView>
+
+//   <SafeAreaView style = {
+//       {
+//         height : 50,
+//         backgroundColor : 'rgb(1,45,190)',
+//       }
+//     }>
+//       <Text style = {
+//           {
+//             color : 'black',
+//             textAlign: 'center',
+//           }
+//         }> My rating on codechef is 3* and on hackerrank my rank is 30000</Text>
+//   </SafeAreaView>
+
+//   </SafeAreaView>
+//   );
+// };
+
+
+// ConceptOfButton 
+
+
+
+//const ButtonHandler = ()=> {
+  // Defining an array prop for handling dynamic data
+  //const [name, updateName] = useState("Yash Mathur")
+  // Assigning an default value to the name field.
+  //On calling the udpateName function the value of name will change and this change will also reflect on the
+  // screen simulatneously since this is the dynamic data.
+
+//   const clickEvent = ()=> {
+//     updateName('Aditya Mathur')
+//     console.log("The name is changed");
+//   }
+
+//   return (
+//   <View>
+//     <Text style = {style.header}> My name is {name}</Text>
+//     <View style = {style.buttondesign}>
+//     <Button title = "Update Name" onPress = {clickEvent} />
+//     </View>
+//   </View>
+
+//   );
+// }
+
+// const style = StyleSheet.create({
+//   header : {
+//     textAlign : 'center',
+//     padding : 40,
+//     fontSize : 40, 
+//     color : 'green',
+
+//   },
+
+//   buttondesign : {
+//     padding : 25,
+//   }
+// })
+
+// export default ButtonHandler
+// var count =0 ; 
+// const DisplayPeople = ()=> {
+//   const [people, change] = useState({name : 'Yash Mathur', age: '19'})
+
+//   const func = ()=> {
+//     count+=1; 
+//     if(count==1) {
+//     change({name :'Shahrukh Khan', age : "53"})
+//     }
+
+//     else {
+//       console.log("We can't change value any more")
+//     }
+//   }
+
+//   return(
+//     <View style >
+//     <Text style = {style.display}> My name is {people.name} and my age is {people.age} </Text>
+//     <View style = {style.button}>
+//       <Button title = "Press Me" onPress = {func} />
+//     </View>
+//     </View>
+//   );
+// }
+
+// const style = StyleSheet.create({
+//   display : {
+//     translateY : 150,
+//     textAlign : 'center',
+//     color : 'green',
+    
+//   },
+
+//   button: {
+//     translateY : 200,
+//     translateX : 100,
+//     width : 160,
+//   }
+// })
+
+// export default DisplayPeople
+
+// Let's study TextInput Fields.
+
+// const InputFields = ()=> {
+//   const [name, changeName] = useState('Yash Mathur')
+//   const [age, changeAge] = useState('19')
+
+//   const func1 = (val)=> {
+//     changeName(val)
+//   }
+
+//   const func2 = (val)=> {
+//     changeAge(val)
+//   }
+
+//   return(
+//     <View style = {style.text}>
+//       <Text style = {style.text1}> My Name is {name} and my age is {age} </Text>
+//       <TextInput style = {style.name} placeholder = "eg : Mark" onChangeText = {func1}/>
+//       <TextInput style = {style.age} placeholder = "eg : 45" onChangeText = {func2}/>
+//     </View>
+//   )
+// }
+
+// const style = StyleSheet.create({
+//   text : {
+//     flex : 1,
+//     justifyContent : 'center',
+//     alignItems : 'center',
+//     backgroundColor : '#698'
+//   },
+
+//   text1: {
+//     fontWeight : 'bold',
+//     color : '#231',
+//   },
+
+//   name :  {
+//     marginTop : 25,
+//     textAlign : 'center',
+//     width : 250,
+//     height : 30,
+//     backgroundColor : '#777',
+//   },
+
+//   age :  {
+//     marginTop : 25,
+//     textAlign : 'center',
+//     width : 250,
+//     height : 30,
+//     backgroundColor : '#777'
+//   }
+// })
+
+// export default InputFields
+
+// Let's Explore the Lists and The Scrollable View
+
+// const ExploreList = ()=> {
+//   const [people, updatePeople] = useState([{name : "Ranu", key : "1"}, {name :"Aditya", key : '2'}, 
+// {name : "Rajendra", key: 3}, {name: "Ira", key : "4"}, {name:"Vidita", key:"5"}, {name :  "Raj", key:"6"}])
+
+//   return (
+//     <View style = {style.container}>
+//       <ScrollView>
+//       {
+        
+//         people.map((item)=> {
+//           return(
+//           <View key = {item.key}>
+//               <Text style = {style.names}>{item.name}</Text>
+//             </View>
+           
+//         )}) 
+      
+//       }
+
+//       </ScrollView>
+      
+//     </View>
+//   )
+
+// }
+
+// const style = StyleSheet.create( {
+//   container : {
+//     marginTop : 40,
+//     paddingLeft : 10,
+//     backgroundColor : "#0000FF",
+//     width : 400,
+//     flex : 1,
+//   },
+
+//   names :  {
+//     marginTop : 25,
+//     fontSize : 50,
+//     color : "black",
+//     fontWeight : "bold",
+//     backgroundColor : "#0000FF",
+//     borderRadius : 100,
+//     translateX : -6,
+//     textAlign : "center",
+//   }
+
+// })
+
+// export default ExploreList
+
+// Let's discuss FlatLists
+
+// const ExploreFlatListAndTouchableEvents = ()=> {
+//   const [person, updateName] = useState([{name: "Yash", id : "1"}, {name : "Aditya", id:  "2"},
+// {name : "Rajendra", id : "3"}, {name: "Ira", id : "4"}, {name : "Vidita", id : "5"}, {name : "Durga", id : "6"}])
+
+
+// const presshandler= (id)=> {
+//   console.log(id)
+
+//   updateName((prev)=> {
+//     return  prev.filter(person=> person.id!=id)
+//   })
+// }
+
+
+// return(
+//   <View style = {style.container}>
+//     <FlatList
+//     keyExtractor = { (item)=>{
+//       return (
+//         item.id
+//       )
+//     }
+//     }
+//     data = {person}
+//     renderItem = {({item})=> {
+//       return (
+//         <TouchableOpacity onPress = {()=> presshandler(item.id)}>
+//              <Text style = {style.names}> {item.name}</Text>
+//         </TouchableOpacity>
+       
+//       )
+//     }}
+    
+//     />
+//   </View>
+// )
+// }
+
+// const style = StyleSheet.create( {
+//   container : {
+//     marginTop : 40,
+//     paddingLeft : 10,
+//     backgroundColor : "lawngreen",
+//     flex : 1,
+//     alignItems : 'center',
+//   },
+
+//   names :  {
+//     marginTop : 25,
+//     fontSize : 50,
+//     color : "black",
+//     fontWeight : "bold",
+//     backgroundColor : "#0000FF",
+//     textAlign : "center",
+//   }
+
+// })
+
+// export default ExploreFlatListAndTouchableEvents
