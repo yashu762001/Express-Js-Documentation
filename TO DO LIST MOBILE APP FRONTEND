@@ -1,0 +1,114 @@
+import { StatusBar, } from 'expo-status-bar';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, TouchableOpacity, TextComponent} from 'react-native';
+import Header from './components/header'
+
+var todos = [
+]
+var count = 1 ; 
+var temporarystring = "";
+
+export default function ToDoList() {
+
+    function pressed() {
+      todos.push({'text' : temporarystring, 'id' :count})
+      count++; 
+    }
+
+  return (
+    <View style = {styles.container}>
+      <Header />
+
+      <View style = {styles.content}>
+        
+        <TextInput 
+        
+        maxLength = {50}
+        style = {styles.input}
+        placeholderTextColor = {"black"}
+        placeholder = {"ADD WORK TO YOUR TODO LIST  !!!!!"}
+        textAlign = {"center"}
+        fontWeight = {"bold"}
+        marginBottom = {10}
+        onChangeText = {(val)=> {
+            temporarystring = val ; 
+        }}
+        />
+
+        <TouchableOpacity style = {styles.button} onPress = {pressed}>
+          <Text style = {
+            {
+              fontSize : 18,
+              fontWeight : "bold",
+              translateY : 10,
+              translateX : 10,
+            }
+          }> Add Task</Text>
+        </TouchableOpacity>
+
+        <View style = {styles.list}>
+          <Text style = {styles.remaining}> Remaining Tasks : </Text>
+          <FlatList
+          
+          data = {todos}
+          renderItem  = {({item})=> {
+            return (
+              <Text style = {styles.text}>{item['text']}</Text>
+            )
+          }}
+          />
+        </View>
+      </View>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container : {
+    flex : 1, 
+    backgroundColor : "rgb(180,80,90)"
+
+  },
+
+  content : {
+  },
+
+  list :  {
+    marginTop : 30,
+  },
+
+  text :  {
+    textAlign : "center",
+    marginTop : 50,
+    paddingLeft : 10,
+    color : "black",
+    fontWeight : "bold",
+    fontSize : 22,
+    backgroundColor : "rgb(150,100,170)",
+    borderRadius : 24,
+  },
+
+  input : {
+    marginTop : 30,
+    backgroundColor : "rgb(125,12,134)",
+    height : 50,
+  },
+
+  remaining : {
+    textAlign : "center",
+    fontSize : 34,
+    paddingTop : 5,
+    color : "black",
+  },
+
+  button:  {
+    marginTop : 15,
+    backgroundColor : "skyblue",
+    width : 120,
+    translateX : 125,
+    height : 50,
+  }
+})
+
+// This code won't work until and unless everythin gets saved somewhere. Since after you will reload the app the todos list will turn empty and it will show nothing. Plus
+simulatneous action is not possible, here.
