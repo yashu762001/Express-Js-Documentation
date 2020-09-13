@@ -1,0 +1,56 @@
+// All this code is for fetching the weather information from a api.
+// I did this just to understand how to make api calls and how to retrieve data and use it and also display it.
+
+
+function func() {
+var x = fetch("http://api.openweathermap.org/data/2.5/weather?q=Tirupati&units=metric&appid=051e3e6b97e3c867503a8392d0b9176c"
+).then(data=>{
+    return(
+        data.json()
+    )
+
+}).then(data1=> {
+    console.log(data1);
+    document.getElementById('name').innerHTML = data1['name']
+    document.getElementById('l1').innerHTML = "MaxTemp : "  + data1.main['temp_max']  
+    document.getElementById('l2').innerHTML = "Wind Direction : " + data1.wind['deg']  
+    document.getElementById('l3').innerHTML = "Wind Speed : " + data1.wind['speed']  
+    document.getElementById('l4').innerHTML = "Pressure : "  + data1.main['pressure']  
+    document.getElementById('l5').innerHTML = "Humidity : " + data1.main['humidity']
+})
+console.log("Data Still Not Retrieved")
+}
+
+// Using A weather api for displaying information about various countries. GET REQUEST TO THE API.
+
+// The fetch method is asynchronous since it takes time to fetch data from the api and then parse it and 
+// then display it. So during this period it does not make the other tasks to wait and let them get completed
+// It just asks us to write a callback so that as it receives and parses the data it calls that callback 
+// thereby providing us the required data.
+
+
+async function func() {
+    var x = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Bikaner&units=metric&appid=051e3e6b97e3c867503a8392d0b9176c")
+    var data1 = await x.json()
+
+    console.log(x)
+    console.log(data1)
+    
+        document.getElementById('name').innerHTML = data1['name']
+        document.getElementById('l1').innerHTML = "MaxTemp : "  + data1.main['temp_max']  
+        document.getElementById('l2').innerHTML = "Wind Direction : " + data1.wind['deg']  
+        document.getElementById('l3').innerHTML = "Wind Speed : " + data1.wind['speed']  
+        document.getElementById('l4').innerHTML = "Pressure : "  + data1.main['pressure']  
+        document.getElementById('l5').innerHTML = "Humidity : " + data1.main['humidity']
+}
+
+
+// The concept is very simple. 
+
+// The asynchronous functions takes time to completely execute so they return a promise telling that i will 
+// definitely return a data as i will receive. But we want complete status and not promise so we used a then block
+// above showing that as status is achieved return it and start parsing it. But to reduce that size of code we
+// use await which simply means proper status would be returned and not the promise. After that status is 
+// parsed and we are returned with proper data.
+
+// Key Point is that await can only be used inside asynchronous functions thus we used async keyword after func.
