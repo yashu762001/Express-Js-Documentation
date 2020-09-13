@@ -1,0 +1,162 @@
+// Actually these are two separate files but i am currently including them in the common codebase. This is a mobile application made using React Native Frontend and a api from
+// rapidapi.com.
+
+// File App.js : 
+
+export default class App extends React.Component {
+  state = {
+    male : "",
+    female : "",
+    result : "", 
+  }
+
+  submitIt() {
+    fetch(`https://love-calculator.p.rapidapi.com/getPercentage?fname=${this.state.male}&sname=${this.state.female}`
+    , {headers : {
+      "x-rapidapi-host": "love-calculator.p.rapidapi.com",
+		"x-rapidapi-key": "1437ee0467msh7b8dabe87fdaab6p1d9d6cjsn16937d054ffa"
+    }}).then(data=> {
+      return (
+        data.json()
+      )
+    }).then(data2=> {
+      this.setState( {
+        result : data2
+      })
+    })
+  }
+
+  render() {
+    return (
+      <View style = {styles.container}>
+        <Appbar.Header>
+      <Appbar.Content title="Love % Calculator" 
+      
+      style = {
+        {
+          transform : [
+            {translateX : 80}
+          ],
+
+          
+        }
+        
+      }
+
+      color = {"black"}
+      fontWeight = {"bold"}
+      />
+    </Appbar.Header>
+
+        <TextInput
+        
+        label = "Male(First Name)"
+        style = {
+          {
+
+            color : "black",
+            fontWeight : "bold",
+            fontSize : 19,
+          }
+        }
+        onChangeText = {(text)=> {
+          this.setState( {
+            male : text
+          })
+        }}
+        
+        />
+
+<TextInput
+        
+        label = "Female(First Name)"
+        style = {
+          {
+            color : "black",
+            fontWeight : "bold",
+            fontSize : 19,
+            marginBottom  :10,
+          }
+        }
+        onChangeText = {(text)=> {
+          this.setState( {
+            female : text
+          })
+        }}
+        
+        />
+
+
+         <Button mode="contained" 
+              style = {
+                {
+                  marginRight  :10,
+                  marginLeft  :10,
+                }
+              }
+             onPress={() => this.submitIt()}>
+              Calculate
+         </Button>
+
+              <DisplayLove data = {this.state.result} />
+       
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create( {
+  container : {
+    flex : 1,
+    backgroundColor : "white"
+  }
+})
+
+// File Love.js
+
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { TextInput, Appbar, Button } from 'react-native-paper';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+const DisplayLove = (props)=> {
+    if(props.data.fname =="" || props.data.sname =="") {
+        return (
+            <Text style = {styles.text}> Please Enter All The Fields</Text>
+        )
+    }
+    return (
+        <View style = {styles.container}>
+            <Text style = {styles.text}>
+                Percentage Match : {props.data.percentage} %
+            </Text>
+
+            <Text style = {styles.text}>
+                Result : {props.data.result}
+            </Text>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create( {
+    container : {
+        flex : 1,
+        marginTop : 60,
+    },
+
+    text : {
+        marginTop : 20,
+        fontSize : 30,
+        marginBottom : 25,
+        fontWeight : "bold",
+        textAlign : "center",
+        borderWidth : 2,
+        marginRight : 10,
+        marginLeft: 10,
+        backgroundColor : "rgb(110,0,255)"
+    }
+})
+
+export default DisplayLove
+
