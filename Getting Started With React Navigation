@@ -1,0 +1,122 @@
+/* {
+  Author : Yash Mathur,
+  2nd Year Btech Civil Engineering.
+} */
+
+// Concept Explanation : 
+
+/* Basically We want to move between multiple screens. Till Now The codes i wrote were involving a single screen serving several functionalities.But now below code explains the
+way to involve multiple screens within the code. A website which is a collection of multiple webpages allows us to move from 1 page to another using the <a> tag's href attribute.
+This process is called navigation ie searching for the proper page and then rendering it. Something similar takes place in mobile applications also. First of all in apps we have
+screens and not webpages. Secondly we don't have <a> tage to directly route the urls to the corresponding screens. But here we have ScreenNavigator. The screenNavigator basically
+returns a object which has two props one is the screen and another is the navigator. Screen is nothing but what we will see on the mobile app. But how to uniquely define a screen.
+For this we have a screen name and a screen component. The screen name allows us to search for a screen using this name plus as we will search for this screen we would have to 
+render something which would be defined in a function. So this component is nothing but the name of the function which is to be called after screen is searched. Now what is 
+navigator. Navigator is nothing but a tool which is provided by react native that allows us to search for the screens. Now we also have a NavigationContainer which is actually
+like a div tag within html. The div tag just embeds one particular feature within it similarly the conatiner here embeds the entire navigation including the navigator and the
+screen. */
+
+
+function HomeScreen({navigation}) {
+  return (
+    <View style = {styles.container}>
+        <Text style = {styles.text}>
+          The Home Page For React Navigation Tutorial
+        </Text>
+
+        <Button
+
+          title = "About"
+          onPress = {()=> navigation.navigate('About')}
+        
+        />
+
+        <Separator />
+
+        <Button
+
+        title = "Contact"
+        onPress = {()=> navigation.navigate('Contact')}
+
+        />
+
+
+    </View>
+  )
+}
+
+function Separator() {
+  return(
+    <View style = {styles.separate}>
+
+    </View>
+  )
+}
+
+function AboutScreen({navigation}) {
+    return(
+      <View style = {styles.container}>
+        <Text style = {styles.text}>
+            I am Yash Mathur. I am World's Best Debugger and programmer.
+        </Text>
+
+        <Button
+
+          title = "Contact"
+
+          onPress = {()=> navigation.navigate('Contact')}
+        
+        />
+
+      </View>
+    )
+}
+
+
+function ContactScreen({navigation}) {
+  return(
+    <View style = {styles.container}>
+      <Text style = {styles.text}>
+        Contact me at : 9783049361
+      </Text>
+    </View>
+  )
+}
+
+
+
+const Stack = createStackNavigator()
+
+const App = ()=> {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions = {{title : "Chacon"}} >
+        <Stack.Screen name = "Home" component = {HomeScreen} />
+         <Stack.Screen name = "About" component = {AboutScreen} />
+         <Stack.Screen name = "Contact" component = {ContactScreen} /> 
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create( {
+  container : {
+    flex : 1,
+    justifyContent : "center",
+    alignItems : "center",
+    
+  },
+
+  text :  {
+    fontSize : 22,
+    textAlign : "center",
+    marginBottom : 20,
+  },
+
+  separate :  {
+    marginBottom : 30,
+    marginTop  :20
+  }
+})
