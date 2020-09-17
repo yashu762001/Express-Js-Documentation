@@ -1,0 +1,390 @@
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator, DrawerActions} from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';  
+import AntIcon from "react-native-vector-icons/AntDesign";
+
+
+
+const Tab = createMaterialBottomTabNavigator();
+const ProfileStack = createStackNavigator()
+const ConfessionStack = createStackNavigator()
+const AppStack = createStackNavigator()
+const OwnerStack = createStackNavigator()
+const TechStack = createStackNavigator()
+const BizStack = createStackNavigator()
+const ChatStack = createStackNavigator()
+const Drawer1 = new createDrawerNavigator()
+const Drawer2 = new createDrawerNavigator()
+const Drawer3 = new createDrawerNavigator()
+
+function ProfileScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "white",
+    }}>
+      <Text style = {{
+        textAlign :  "center",
+        fontWeight : "bold",
+        fontSize : 25
+      }}> This is Your Profile Page. Enjoy Reading And Writing The Confessions and Keep On Commenting On the
+        confessions.
+      </Text>
+    </View>
+  )
+}
+
+function ConfessionScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> This Page Holds The record of all the confessions you made.
+      </Text>
+    </View>
+  )
+}
+
+function AppScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> This app is made so that you can confess anonymously. You don't have reveal your identity and also
+      share your things within your heart with everyone. There are several things which we do want to share but
+      are not able to beacuse of community fear.
+      </Text>
+    </View>
+  )
+}
+
+function OwnerScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> The owner of this app is Yash Mathur. I am currently a second year student at IIT Madras. I am pursuing
+        y degree in Civil Engineering.
+      </Text>
+    </View>
+  )
+}
+
+function TechScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> Contact CTO Mr. Yash Mathur at : 9783049361
+      </Text>
+    </View>
+  )
+}
+
+function BizScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> Contact CEO Mr. Rajendra Mathur at : 9828545442
+      </Text>
+    </View>
+  )
+}
+
+function ChatScreen() {
+  return (
+    <View style = {{
+      flex : 1,
+      justifyContent :  "center",
+      alignItems :  "center",
+      backgroundColor : "powderBlue",
+    }}>
+      <Text style = {{
+        textAlign :  "center"
+      }}> Keep On Chatting anonymously
+      </Text>
+    </View>
+  )
+}
+
+
+function HomeDrawer() {
+  return (
+    <Drawer1.Navigator drawerContentOptions={{
+      activeTintColor: 'black',
+      fontWeight : "bold",
+      activeBackgroundColor : "grey"
+    }} drawerStyle={{
+      backgroundColor: "white",
+      width: 341,
+      height : 850
+    }}>
+      <Drawer1.Screen name = "Profile" component = {ProfileStackScreen} options = {{
+        drawerIcon : ()=> (
+          <AntIcon
+                size={30}
+                name = "profile" color = "blue" > </AntIcon>
+        )
+      }} />
+      <Drawer1.Screen name = "Confession" component = {ConfessionStackScreen} options = {{
+        drawerIcon : ()=> (
+          <AntIcon
+                size={30}
+                name = "form" color = "blue" > </AntIcon>
+        )
+      }} />
+
+    </Drawer1.Navigator>
+  )
+}
+
+function AboutDrawer() {
+  return (
+    <Drawer2.Navigator drawerContentOptions={{
+      activeTintColor: 'black',
+      fontWeight : "bold",
+      activeBackgroundColor : "black"
+    }} drawerStyle={{
+      backgroundColor: 'teal',
+      width: 240,
+      height : 300,
+    }}>
+      <Drawer2.Screen name = "App" component = {AppStackScreen} />
+      <Drawer2.Screen name = "Owner" component = {OwnerStackScreen} />
+    </Drawer2.Navigator>
+  )
+}
+
+function ContactDrawer() {
+  return (
+    <Drawer3.Navigator drawerContentOptions={{
+      activeTintColor: 'black',
+      fontWeight : "bold",
+      activeBackgroundColor : "#009387"
+    }} drawerStyle={{
+      backgroundColor: '#009387',
+      width: 240,
+      height : 300,
+    }}>
+      <Drawer3.Screen name = "Techie" component = {TechStackScreen} />
+      <Drawer3.Screen name = "Bizie" component = {BizStackScreen} />
+    </Drawer3.Navigator>
+  )
+}
+
+
+function ProfileStackScreen({navigation}) {
+  return (
+      <ProfileStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "#0288d1" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+        headerStyle: {
+          backgroundColor : "#0288d1"
+        },
+        
+        
+      }}>
+        <ProfileStack.Screen name = "Profile" component = {ProfileScreen} />
+      </ProfileStack.Navigator>
+  )
+}
+
+function ConfessionStackScreen({navigation}) {
+  return (
+      <ConfessionStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "teal" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+        headerStyle: {
+          backgroundColor : "teal"
+        },
+        
+        
+      }}>
+        <ConfessionStack.Screen name = "Confession" component = {ConfessionScreen} />
+      </ConfessionStack.Navigator>
+  )
+}
+
+function AppStackScreen({navigation}) {
+  return (
+      <AppStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "#009387" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+        headerStyle: {
+          backgroundColor : "#009387"
+        },
+        
+        
+      }}>
+        <AppStack.Screen name = "App" component = {AppScreen} />
+      </AppStack.Navigator>
+  )
+}
+
+function OwnerStackScreen({navigation}) {
+  return (
+      <OwnerStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "#009387" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+        headerStyle: {
+          backgroundColor : "#009387"
+        },
+        
+        
+      }}>
+        <OwnerStack.Screen name = "Owner" component = {OwnerScreen} />
+      </OwnerStack.Navigator>
+  )
+}
+
+
+
+function TechStackScreen({navigation}) {
+  return (
+      <TechStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "#009387" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+
+        headerStyle: {
+          backgroundColor : "#009387"
+        }
+      }}>
+        <TechStack.Screen name = "Techie" component = {TechScreen} />
+      </TechStack.Navigator>
+  )
+}
+
+function BizStackScreen({navigation}) {
+  return (
+      <BizStack.Navigator screenOptions = {{
+        headerLeft : ()=> (
+          <Icon.Button name = "ios-menu" size = {28} backgroundColor = "#009387" 
+      onPress = {()=>navigation.openDrawer()} > </Icon.Button>
+     ),
+
+        headerStyle: {
+          backgroundColor : "#009387"
+        }
+      }}>
+        <BizStack.Screen name = "Biz" component = {BizScreen} />
+      </BizStack.Navigator>
+  )
+}
+
+function ChatStackScreen({navigation}) {
+  return (
+      <ChatStack.Navigator screenOptions = {{
+
+        headerStyle: {
+          backgroundColor : "#009387"
+        }
+      }}>
+        <ChatStack.Screen name = "Chacon" component = {ChatScreen} />
+      </ChatStack.Navigator>
+  )
+}
+
+const App = ()=> {
+  return (
+    <NavigationContainer>
+    <Tab.Navigator
+      inactiveColor = "black"
+      barStyle = {{
+        backgroundColor : "#0288d1",
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeDrawer}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color }) => (
+            <AntIcon name="home" color={color} size={26} />
+          ),
+        }} tabbarOptions = {{
+          activeBackgroundColor : "brown"
+        }}
+      />
+
+      <Tab.Screen
+              name="About"
+              component={AboutDrawer}
+              options={{
+                tabBarLabel: 'About',
+                tabBarIcon: ({ color }) => (
+                  <AntIcon name="team" color={color} size={26} />
+                ),
+                
+              }}
+            />
+
+
+      <Tab.Screen
+        name="Contact"
+        component={ContactDrawer}
+        options={{
+          tabBarLabel: 'Contact',
+          tabBarIcon: ({ color }) => (
+            <AntIcon name="phone" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={ChatStackScreen}
+        options={{
+          tabBarLabel: 'Chat',
+          tabBarIcon: ({ color }) => (
+            <AntIcon name="message1" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default App
